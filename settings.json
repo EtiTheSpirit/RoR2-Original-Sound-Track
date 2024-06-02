@@ -24,17 +24,20 @@
         {
             "scenes": [ "goolake", "itgoolake" ], // Abandoned Aqueduct
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "dampcavesimple", "itdampcave" ], // Abyssal Depths
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "ancientloft", "itancientloft" ], // Aphelian Sanctuary
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "bazaar" ], // Bazaar Between Time
@@ -52,7 +55,8 @@
         {
             "scenes": [ "blackbeach", "blackbeach2" ], // Distant Roost
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "goldshores" ], // Gilded Coast
@@ -65,37 +69,44 @@
         {
             "scenes": [ "frozenwall", "itfrozenwall" ], // Rallypoint Delta
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "wispgraveyard" ], // Scorched Acres
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "snowyforest" ], // Siphoned Forest
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "shipgraveyard" ], // Siren's Call
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "skymeadow", "itskymeadow" ], // Sky Meadow
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "sulfurpools" ], // Sulfur Pools
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "rootjungle" ], // Sundered Grove
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "voidraid" ], // The Planetarium
@@ -104,7 +115,8 @@
         {
             "scenes": [ "golemplains", "golemplains2", "itgolemplains" ], // Titanic Plains
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
         },
         {
             "scenes": [ "arena" ], // Void Fields
@@ -117,7 +129,14 @@
         {
             "scenes": [ "foggyswamp" ], // Wetland Aspect
             "tracks": [],
-            "bossTracks": []
+            "bossTracks": [],
+            "postBossTracks": []
+        },
+        {
+            "scenes": [ "lakes" ], // Verdant Falls
+            "tracks": [],
+            "bossTracks": [],
+            "postBossTracks": []
         }
     ]
 

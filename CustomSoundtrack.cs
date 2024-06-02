@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine.SceneManagement;
 using Path = System.IO.Path;
@@ -24,10 +25,12 @@ namespace CustomSoundtrack {
 
         // playlists
         private Dictionary<string, List<string>> bossPlaylists = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> postBossPlaylists = new Dictionary<string, List<string>>();
         private Dictionary<string, List<string>> playlists = new Dictionary<string, List<string>>();
 
         // current game state
         private bool bossActive = false;
+        private bool tpOver = false;
         private string currentScene = "";
 
         // current playback state
@@ -97,6 +100,12 @@ namespace CustomSoundtrack {
                                 if (playlist.ContainsKey("bossTracks"))
                                     foreach (var bossTrack in playlist["bossTracks"])
                                         bossPlaylists[scene].Add(Path.Combine(trackPath, bossTrack));
+                                
+                                if (!postBossPlaylists.Keys.Contains(scene))
+                                    postBossPlaylists.Add(scene, new List<string>());
+                                if (playlist.ContainsKey("postBossTracks"))
+                                    foreach (var tpTrack in playlist["postBossTracks"])
+                                        postBossPlaylists[scene].Add(Path.Combine(trackPath, tpTrack));
 
                             }
 
@@ -127,6 +136,13 @@ namespace CustomSoundtrack {
                         log("        " + track);
                 }
 
+                log("tp playlists: ");
+                foreach (var scene in postBossPlaylists.Keys) {
+                    log("    " + scene + ": ");
+                    foreach (var track in postBossPlaylists[scene])
+                        log("        " + track);
+                }
+
             }
 
             //// hooks
@@ -139,6 +155,7 @@ namespace CustomSoundtrack {
 
                 if (start && currentScene != scene.name) {
                     bossActive = false;
+                    tpOver = false;
                     currentPlaylist = playlists["_default"];
                     currentScene = scene.name;
                     nextPlaylist();
@@ -177,6 +194,20 @@ namespace CustomSoundtrack {
                 if (logging)
                     log("activated teleporter");
 
+            };
+
+            // when tp event ends
+            RoR2.TeleporterInteraction.onTeleporterChargedGlobal += (TeleporterInteraction teleporterInteraction) => {
+
+                if (!tpOver) {
+                    bossActive = false;
+                    tpOver = true;
+                    nextPlaylist();
+                }
+
+                if (logging)
+                    log("tp event over");
+                
             };
 
             // when the mithrix fight starts
@@ -247,6 +278,9 @@ namespace CustomSoundtrack {
             // if no playlist is found, the default playlist is used
             if (bossActive == false) {
                 if (playlists.ContainsKey(currentScene) && playlists[currentScene].Count > 0)
+                    currentPlaylist = playlists[currentScene];
+            } else if (tpOver == true) {
+                if (postBossPlaylists.ContainsKey(currentScene) && postBossPlaylists[currentScene].Count > 0)
                     currentPlaylist = playlists[currentScene];
             } else {
                 if (bossPlaylists.ContainsKey(currentScene) && bossPlaylists[currentScene].Count > 0)
